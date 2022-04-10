@@ -1,0 +1,51 @@
+<div class="container-xxl">
+  <div class="row">
+    <h2 class="text-center mb-5">OAuth Server using Facebook</h2>
+
+    <div *ngIf="!isSignedin">
+      <button type="button" (click)="facebookSignin()" class="btn btn-primary btn-block">Login with Facebook</button>
+    </div>
+
+    <div *ngIf="isSignedin === true">
+      <div class="row b-25">
+        <div class="col-md-6">
+          <div class="form-group b-25">
+            <img src="{{user.photoUrl}}" />
+          </div>
+          <div class="form-group">
+            <label class="b-10">ID</label>
+            <input type="text" class="form-control" [value]="user.id" id="firstname" readonly>
+          </div>
+          <div class="form-group t-10">
+            <label class="b-10">Token</label>
+            <input type="text" class="form-control" [value]="user.authToken" id="firstname" readonly>
+          </div>
+          <div class="form-group t-10">
+            <label class="b-10">First Name</label>
+            <input type="text" class="form-control" [value]="user.firstName" id="firstname" readonly>
+          </div>
+          <div class="form-group t-10">
+            <label class="b-10">Last Name</label>
+            <input type="text" class="form-control" [value]="user.lastName" id="lastname" readonly>
+          </div>
+          <div class="form-group t-10">
+            <label class="b-10">Email</label>
+            <input type="text" class="form-control" [value]="user.email" id="email" readonly>
+          </div>
+
+          <button type="button" (click)="logOut()" class="btn btn-primary t-25">Log Out</button>
+        </div>
+      </div>
+
+      <div class="row b-25">
+        <h4 class="b-25 bold">Meta Data of the logged in user</h4>
+        <ngx-json-viewer [json]="metaData" [expanded]="false"></ngx-json-viewer>
+      </div>
+
+      <div class="row b-25">
+        <h4 class="b-25 bold">Permissions of the logged in user</h4>
+        <ngx-json-viewer [json]="permissionData" [expanded]="false"></ngx-json-viewer>
+      </div>
+    </div>
+  </div>
+</div>
